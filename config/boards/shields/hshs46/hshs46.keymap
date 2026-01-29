@@ -48,14 +48,14 @@
                 nav_layer {
 /* NAV
  * -------------------------------------------------------------------------------------------------------------------------------------
- * | Copy  |      |   Up   |      |      |      |-----------------------------------|  N7    |   N8   |   N9   |  N0   |      |  -  |
- * | SHIFT |  Left |  DOWN  | Right| Shift | Paste |-----------------------------------|  N4   |  N5   |  N6   |  Down | Right | PG DN |
+ * | CAD  |      |   Up   |      |      |      |-----------------------------------|  N7    |   N8   |   N9   |  N0   |      |  -  |
+ * | SHIFT |  Left |  DOWN  | Right| Shift | Paste |-----------------------------------|  N4   |  N5   |  N6   |      |      | PG DN |
  * | Ctrl  |  F1   |  F2   |  F3   |  F4   |  F5   |  UnDo |-------------------| ReDo  |  N1   |  N2   |  N3  |  F9   |  F10  | Ctrl  |
  *                                 |       |       |       |       |---| ADJ_L |       |       |       |
  */
                         bindings = <
-&kp LC(LA(DEL)) &kp  N1       &kp  N2       &kp  N3       &kp  N4       &kp  N5                                                                        &kp   N7      &kp   N8      &kp   N9      &kp N0      &none      &trans
-&trans      &kp  LGUI     &kp  LALT     &kp  LCTRL    &kp  LSHFT    &kp  Paste                                                                     &kp   N4   &kp  N5    &kp   N6     &kp   DOWN    &kp  RIGHT    &kp PG_DN
+&kp LC(LA(DEL)) &none       &kp  UP       &none       &none       &none                                                                        &kp   N7      &kp   N8      &kp   N9      &kp N0      &none      &trans
+&trans      &kp  LEFT     &kp  DOWN     &kp  RIGHT    &kp  Copy    &kp  Paste                                                                     &kp   N4   &kp  N5    &kp   N6     &none    &none    &kp PG_DN
 &trans        &kp  F1       &kp  F2       &kp  F3       &kp  F4       &kp  F5       &kp Undo                                           &kp  Redo     &kp   N1      &kp  N2      &kp   N3      &kp   F9      &kp  F10      &kp RCTRL
                                                         &trans        &trans        &trans        &trans                 &mo ADJ_L     &trans        &trans        &trans
                         >;
