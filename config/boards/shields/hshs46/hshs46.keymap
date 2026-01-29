@@ -20,7 +20,7 @@
 #define Copy   LC(C)
 #define Paste  LC(V)
 #define Redo   LC(Y)
-#define CAD    LC(LALT(DEL))
+#define CAD    LC(LA(DEL))
 
 
 / {
@@ -54,7 +54,7 @@
  *                                 |       |       |       |       |---| ADJ_L |       |       |       |
  */
                         bindings = <
-&kp LC(LA(DEL)) &none       &kp  UP       &none       &none       &none                                                                        &kp   N7      &kp   N8      &kp   N9      &kp N0      &none      &trans
+&kp CAD &none       &kp  UP       &none       &none       &none                                                                        &kp   N7      &kp   N8      &kp   N9      &kp N0      &none      &trans
 &trans      &kp  LEFT     &kp  DOWN     &kp  RIGHT    &kp  Copy    &kp  Paste                                                                     &kp   N4   &kp  N5    &kp   N6     &none    &none    &kp PG_DN
 &trans        &kp  F1       &kp  F2       &kp  F3       &kp  F4       &kp  F5       &kp Undo                                           &kp  Redo     &kp   N1      &kp  N2      &kp   N3      &kp   F9      &kp  F10      &kp RCTRL
                                                         &trans        &trans        &trans        &trans                 &mo ADJ_L     &trans        &trans        &trans
