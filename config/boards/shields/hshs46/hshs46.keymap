@@ -11,7 +11,7 @@
 #include <dt-bindings/zmk/outputs.h>
 
 #define QWERTY_L 0
-#define NAV_L    1
+#define NUM_L    1
 #define SYM_L    2
 #define ADJ_L    3
 
@@ -24,46 +24,72 @@
 
 
 / {
+    macros {
+     wpass: wpass {
+        label = "Standard";
+        compatible = "zmk,behavior-macro";
+         #binding-cells = <0>;
+         bindings = <
+         &macro_tap
+            &kp MINUS &kp LS(W) &kp A &kp N &kp D &kp N8 
+            &kp MINUS &kp LS(C) &kp L &kp U &kp N &kp K &kp Y 
+            &kp MINUS &kp LS(S) &kp A &kp N &kp D &kp S &kp T &kp O &kp R &kp M
+            &kp RET
+            >;
+        };
+        svr: svr{
+            label = "Standard";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <
+            &macro_tap
+                &kp T &kp LS(A) &kp N0 &kp LS(N6) &kp N4 &kp K &kp T &kp LS(Y) &kp K &kp N1 &kp N1 &kp LS(L) &kp LS(N5) &kp O &kp LS(P) &kp LS(N2) &kp LS(U) &kp F
+            >;
+        };
+    };
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
+display-name = "QWERTY";
 /* QWERTY
  * -------------------------------------------------------------------------------------------------------------------------------------
  * | TAB   |   Q   |   W   |   E   |   R   |   T   |-----------------------------------|   Y   |   U   |   I   |   O   |   P   |   -   |
  * | SHIFT |   A   |   S   |   D   |   F   |   G   |-----------------------------------|   H   |   J   |   K   |   L   |   ;   |   '   |
  * | CTRL  |   Z   |   X   |   C   |   V   |   B   |  ESC  |-------------------| ENTER |   N   |   M   |   ,   |   .   |   /   |   \   |
- *                                 |  GUI  |  ALT  | SPACE |  Nav  |---|  Sym  | BKSPC |  ALT  |  GUI  |
+ *                                 |  GUI  |  ALT  | SPACE |  Num  |---|  Sym  | BKSPC |  ALT  |  GUI  |
  */
                         bindings = <
 &kp  TAB    &kp  Q        &kp  W        &kp  E        &kp  R        &kp  T                                                                         &kp  Y        &kp  U        &kp  I        &kp  O        &kp  P        &kp  MINUS
 &kp  LSHIFT &kp  A        &kp  S        &kp  D        &kp  F        &kp  G                                                                         &kp  H        &kp  J        &kp  K        &kp  L        &kp  SEMI     &kp  SQT
 &kp  LCTRL  &kp  Z        &kp  X        &kp  C        &kp  V        &kp  B        &kp  ESC                                           &kp ENTER    &kp  N        &kp  M        &kp  COMMA    &kp  DOT      &kp  SLASH    &kp  BSLH
-                                                      &kp  LGUI     &kp  LALT     &kp  SPACE    &mo  NAV_L            &mo  SYM_L    &kp  BSPC    &kp  LALT     &kp  RGUI
+                                                      &kp  LGUI     &kp  LALT     &kp  SPACE    &mo  NUM_L            &mo  SYM_L    &kp  BSPC    &kp  LALT     &kp  RGUI
                         >;
 
                         sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
                 };
 
-                nav_layer {
-/* NAV
+                num_layer {
+display-name = "Num+";
+/* NUM
  * -------------------------------------------------------------------------------------------------------------------------------------
- * | CAD  |      |   Up   |      |      |      |-----------------------------------|  N7    |   N8   |   N9   |  N0   |      |  -  |
- * | SHIFT |  Left |  DOWN  | Right| Shift | Paste |-----------------------------------|  N4   |  N5   |  N6   |      |      | PG DN |
- * | Ctrl  |  F1   |  F2   |  F3   |  F4   |  F5   |  UnDo |-------------------| ReDo  |  N1   |  N2   |  N3  |  F9   |  F10  | Ctrl  |
- *                                 |       |       |       |       |---| ADJ_L |       |       |       |
+ * | grave |  N1   |   N2   |  N3  |  N4   |    N5 |-----------------------------------|  N6   |   N7  |   N8   |  N9   |   N0   | EQUAL |
+ * | SHIFT |       |        |      | Copy  | Paste |-----------------------------------|       |       |  N6    |       |        | PG DN |
+ * | ALT  |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |-------------------| UP    |  F7   |  F8   |  F9    |  F10  |  F11   |  F12  |
+ *                                 |       |       |      |       |---| Left  | DOWN  | Right |       |
  */
                         bindings = <
-&kp CAD &none       &kp  UP       &none       &none       &none                                                                        &kp   N7      &kp   N8      &kp   N9      &kp N0      &none      &trans
-&trans      &kp  LEFT     &kp  DOWN     &kp  RIGHT    &kp  Copy    &kp  Paste                                                                     &kp   N4   &kp  N5    &kp   N6     &none    &none    &kp PG_DN
-&trans        &kp  F1       &kp  F2       &kp  F3       &kp  F4       &kp  F5       &kp Undo                                           &kp  Redo     &kp   N1      &kp  N2      &kp   N3      &kp   F9      &kp  F10      &kp RCTRL
-                                                        &trans        &trans        &trans        &trans                 &mo ADJ_L     &trans        &trans        &trans
+&kp GRAVE &kp N1 &kp  N2 &kp N3 &kp N4  &kp N5                                                    &kp N6  &kp N7 &kp N8 &kp N9 &kp N0 &kp EQUAL
+&trans &none &none &none &kp  Copy &kp  Paste                                        &none &none &none &none   &none    &none
+&kp LALT &kp  F1 &kp  F2 &kp  F3 &kp  F4 &kp  F5 &kp F6                                           &kp UP &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
+                   &trans        &trans        &trans        &trans                 &kp  LEFT    &kp  DOWN &kp  RIGHT &none
                         >;
 
                         sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
                 };
 
                 sym_layer {
+display-name = "SYM";
 /* SYM
  * -------------------------------------------------------------------------------------------------------------------------------------
  * | CAD   |   !   |   @   |   #   |   $   |   %   |-----------------------------------|   ^   |   &   |   *   |   (   |   )   | BSPC  |
